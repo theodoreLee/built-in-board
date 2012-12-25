@@ -10,21 +10,18 @@ import models.{Article, Reply}
  * Time: 오후 8:44
  * To change this template use File | Settings | File Templates.
  */
-object Articles extends Controller{
-  def getArticle(id:Long) = Action {
-  val article = Article.get(id)
+object Articles extends Controller {
+  def getArticle(id: Long) = Action {
+    val article = Article.get(id)
 
-    article match{
-     case None =>    Redirect(routes.Articles.showList())
-      case Some(a) =>  Ok(views.html.articles.item(a, Reply.getList(id)))
+    article match {
+      case None => Redirect(routes.Articles.showList())
+      case Some(a) => Ok(views.html.articles.item(a, Reply.getList(id)))
     }
-
-
-
   }
 
   def showList = Action {
-    NotImplemented
+    Ok(views.html.articles.list(Article.getList))
   }
 
 }

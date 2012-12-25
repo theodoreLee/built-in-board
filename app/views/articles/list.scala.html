@@ -1,9 +1,23 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+@(articles:List[Article])(implicit lang:Lang)
+@main(Messages("articles.list.title")) {
+<div class="rows">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>@Messages("article.id")</th>
+            <th>@Messages("article.title")</th>
+            <th>@Messages("article.name")</th>
+        </tr>
+        </thead>
+        <tbody>
+        @for( item <- articles) {
+        <tr class="info" onclick="javascript:window.location.href='@routes.Articles.getArticle(item.id)';">
+            <td class="id">@item.id</td>
+            <td class="title">@item.title</td>
+            <td class="creator">@item.name</td>
+        </tr>
+        }
+        </tbody>
+    </table>
+</div>
+}
