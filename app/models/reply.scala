@@ -18,4 +18,7 @@ object Reply {
 
   private def getNextID = this.replies.size + 1
 
+  def add(reply:Reply)=this.replies + reply
+
+  def getList(articleId:Long):List[Reply]=this.replies.filter((r:Reply) => r.ArticleId == articleId).toList().sortBy(_.id)
 }
