@@ -1,0 +1,20 @@
+@(articleForm:Form[Article])
+
+@import helper._
+@import helper.twitterBootstrap._
+
+@main(Messages("articles.create.title")) {
+        @helper.form(action = routes.Articles.create()) {
+            <fieldset>
+                <legend>@Messages("articles.create.title")</legend>
+            @helper.inputText(articleForm("title"))
+            @textarea(field = articleForm("contents"), args = 'rows -> 3, 'cols -> 150, 'class -> "x-large")
+            @helper.inputText(articleForm("name"))
+            @helper.inputPassword(articleForm("password"))
+            </fieldset>
+            <p>
+                <input type="submit" class="btn btn-primary" value='@Messages("articles.create.submit")'>
+                <a type="button" class="btn" href="@routes.Articles.list">@Messages("articles.create.cancel")</a>
+            </p>
+        }
+}

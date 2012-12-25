@@ -45,4 +45,8 @@ object Article {
   def apply(title: String, contents: String, name: String, password: String): Article = {
     Article(getNextID, title, contents, name, password)
   }
+
+  def unApplyForCreate(article:Article):Option[(String,String,String,String)] = {
+    Some(article.title,article.contents,article.name, article.password)
+  }
 }

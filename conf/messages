@@ -5,3 +5,7 @@ article.title = Title
 article.name = Creator
 
 articles.list.title = Board
+
+articles.create.title = New Article
+articles.create.submit = Submit
+articles.create.cancel = Cancel
