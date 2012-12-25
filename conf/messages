@@ -1,0 +1,5 @@
+article.id = ID
+article.title = Title
+article.name = Creator
+
+articles.list.title = Board

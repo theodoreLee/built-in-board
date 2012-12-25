@@ -3,6 +3,7 @@ package controllers
 import play.mvc.Controller
 import play.api.mvc._
 import play.api.mvc.Results._
+import models.Article
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,7 +18,7 @@ object Articles extends Controller{
   }
 
   def showList = Action {
-    NotImplemented
+    Ok(views.html.articles.list(Article.getList))
   }
 
 }
