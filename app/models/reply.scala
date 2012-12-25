@@ -15,4 +15,9 @@ object Reply {
     Reply(2,4,"contents","play4","play4"),
     Reply(12,5,"contents","play5","play5"),
     Reply(13,6,"contents","play6","play6"))
+
+
+  def add(reply:Reply)=this.replies + reply
+
+  def getList(articleId:Long):List[Reply]=this.replies.filter((r:Reply) => r.ArticleId == articleId).toList().sortBy(_.id)
 }
