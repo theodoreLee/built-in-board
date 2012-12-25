@@ -22,7 +22,7 @@ object Reply {
   def add(reply: Reply): Option[Reply] = {
     reply.id match {
       case -1 =>
-        val newReply = apply(reply.ArticleId, reply, concurrent, replay.name, replay.passoword)
+        val newReply = apply(reply.ArticleId, reply.contents, reply.name, reply.password)
         this.replies = this.replies + newReply
         Some(newReply)
       case id if (this.replies.find((r) => r.id == reply.id).isEmpty) => None
