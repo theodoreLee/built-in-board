@@ -1,9 +1,10 @@
 package controllers
 
-import play.api.mvc.{Action, Controller}
-import models.{Article, Reply}
+import play.api.mvc._
+import models._
 import play.api.data._
 import play.api.data.Forms._
+import play.api.i18n.Messages
 
 /**
  * Created with IntelliJ IDEA.
@@ -34,19 +35,21 @@ object Articles extends Controller {
     Ok(views.html.articles.list(Article.getList))
   }
 
-  def newPage = Action {
+  def newPage = Action {implicit request=>
     Ok(views.html.articles.create(articleForm))
   }
   def create = Action { implicit request =>
-    articleForm.bindFromRequest.fold(
-    error => {
-      println(s"error :" + error.errors.toString())
-      Ok("..")
+    val newForm =articleForm.bindFromRequest
+    newForm.fold(
+    form => {
+      //Todo - 좀 더 찾아볼 것.
+      Ok(views.html.articles.create(form)).flashing(("error" -> Messages("validation.error")))
     },
-    okForm => {
-      Article.add(okForm) match {
-        case Some(article) => Redirect(routes.Articles.list)
-        case None => Ok("-a-")
+    article => {
+      Article.add(article) match {
+        case Some(item) => Redirect(routes.Articles.list)
+          //Todo - 좀 더 찾아 볼것..s
+        case None => Ok(views.html.articles.create(newForm)).flashing(Flash(newForm.data)+("error" -> Messages("validation.error")))
       }
     })
   }
