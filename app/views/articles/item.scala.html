@@ -1,9 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title></title>
-</head>
-<body>
-
-</body>
-</html>
+@(article:Article, replies:List[Reply])
+@main(Messages("articles.item")){
+<div class="articel span10">
+    <label>@article.title</label>
+    <label class="offset9">@Messages("articles.item.name")</label>
+    <textarea>@article.contents</textarea>
+</div>
+<table class="table-striped">
+    @for(reply <- replies){
+    <tr>
+        <td>@reply.id</td>
+        <td>@reply.contents</td>
+        <td><button class="btn-mini">@Messages("articles.item.update")</button>
+            <button class="btn-mini">@Messages("articles.item.delete")</button>
+        </td>
+    </tr>
+    }
+</table>
+}

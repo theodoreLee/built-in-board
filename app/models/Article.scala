@@ -26,6 +26,8 @@ object Article {
 
   def getList:List[Article] = data.toList.sortBy(_.id)
 
+  def get(id:Long):Option[Article] = this.data.find((article) => article.id == id)
+
   def add(item:Article):Option[Article] = {
     item.id match {
       case -1 =>

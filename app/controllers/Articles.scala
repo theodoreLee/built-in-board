@@ -1,8 +1,7 @@
 package controllers
 
-import play.mvc.Controller
-import play.api.mvc._
-import play.api.mvc.Results._
+import play.api.mvc.{Action, Controller}
+import models.{Article, Reply}
 
 /**
  * Created with IntelliJ IDEA.
@@ -13,7 +12,15 @@ import play.api.mvc.Results._
  */
 object Articles extends Controller{
   def getArticle(id:Long) = Action {
-    NotImplemented
+  val article = Article.get(id)
+
+    article match{
+     case None =>    Redirect(routes.Articles.showList())
+      case Some(a) =>  Ok(views.html.articles.item(a, Reply.getList(id)))
+    }
+
+
+
   }
 
   def showList = Action {
