@@ -9,10 +9,13 @@ package models
  */
 case class Reply(id:Long, ArticleId:Long, contents:String, name:String, password:String )
 object Reply {
-  var replies = Set(Reply(123,1,"contents","play1","play1"),
-    Reply(234,2,"contents","play2","play2"),
-    Reply(345,3,"contents","play3","play3"),
-    Reply(2,4,"contents","play4","play4"),
-    Reply(12,5,"contents","play5","play5"),
-    Reply(13,6,"contents","play6","play6"))
+  var replies = Set(Reply(1,1,"contents","play1","play1"),
+    Reply(2,3,"contents","play2","play2"),
+    Reply(3,2,"contents","play3","play3"),
+    Reply(4,3,"contents","play4","play4"),
+    Reply(5,2,"contents","play5","play5"),
+    Reply(6,4,"contents","play6","play6"))
+
+  private def getNextID = this.replies.size + 1
+
 }
