@@ -1,3 +1,5 @@
+appName = "Board"
+
 article.id = ID
 article.title = Title
 article.name = Creator
