@@ -20,5 +20,5 @@ object Reply {
 
   def add(reply:Reply)=this.replies + reply
 
-  def getList(articleId:Long):List[Reply]=this.replies.filter((r:Reply) => r.ArticleId == articleId).toList().sortBy(_.id)
+  def getList(articleId:Long):List[Reply]=this.replies.filter((r:Reply) => r.ArticleId == articleId).toList.sortBy(_.id)
 }
