@@ -7,10 +7,10 @@
         @helper.form(action = routes.Articles.create()) {
             <fieldset>
                 <legend>@Messages("articles.create.title")</legend>
-            @helper.inputText(articleForm("title"))
-            @textarea(field = articleForm("contents"), args = 'rows -> 3, 'cols -> 150, 'class -> "x-large")
-            @helper.inputText(articleForm("name"))
-            @helper.inputPassword(articleForm("password"))
+            @helper.inputText(articleForm("Title"))
+            @textarea(field = articleForm("Contents"), args = 'rows -> 3, 'cols -> 150, 'class -> "x-large")
+            @helper.inputText(articleForm("Creator"))
+            @helper.inputPassword(articleForm("Password"))
             </fieldset>
             <p>
                 <input type="submit" class="btn btn-primary" value='@Messages("articles.create.submit")'>

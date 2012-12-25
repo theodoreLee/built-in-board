@@ -15,10 +15,10 @@ import play.api.data.Forms._
 object Articles extends Controller {
   val articleForm = Form(
     mapping(
-      "title" -> nonEmptyText,
-      "content" -> nonEmptyText,
-      "creator" -> nonEmptyText,
-      "password" -> nonEmptyText
+      "Title" -> nonEmptyText,
+      "Contents" -> nonEmptyText,
+      "Creator" -> nonEmptyText,
+      "Password" -> nonEmptyText
     )(Article.apply)(Article.unApplyForCreate)
   )
   def getArticle(id: Long) = Action {
@@ -37,8 +37,18 @@ object Articles extends Controller {
   def newPage = Action {
     Ok(views.html.articles.create(articleForm))
   }
-  def create = Action {
-    NotImplemented
+  def create = Action { implicit request =>
+    articleForm.bindFromRequest.fold(
+    error => {
+      println(s"error :" + error.errors.toString())
+      Ok("..")
+    },
+    okForm => {
+      Article.add(okForm) match {
+        case Some(article) => Redirect(routes.Articles.list)
+        case None => Ok("-a-")
+      }
+    })
   }
 
 }

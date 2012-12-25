@@ -13,6 +13,7 @@ case class Article(id: Long,
                    contents: String,
                    name: String,
                    password: String) {
+  override def toString = s"$id, $title, $contents, $name, $password"
 }
 
 object Article {
@@ -35,10 +36,10 @@ object Article {
         this.data = this.data + newItem
         Some(newItem)
       case id if (this.data.find((article) => article.id == item.id).isEmpty) =>
-        None
-      case id =>
         this.data = this.data + item
         Some(item)
+      case id =>
+        None
     }
   }
 
