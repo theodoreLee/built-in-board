@@ -31,16 +31,16 @@ object Article {
       case -1 =>
         val newItem = apply(item.title,item.contents,item.name,item.password)
         this.data = this.data + newItem
-        newItem
+        Some(newItem)
       case id if (this.data.find((article) => article.id == item.id).isEmpty) =>
         None
       case id =>
         this.data = this.data + item
-        item
+        Some(item)
     }
   }
 
-  def apply(title:String,contents:String,name:String,password:String) {
+  def apply(title:String,contents:String,name:String,password:String):Article = {
     Article(getNextID,title,contents,name,password)
   }
 }
