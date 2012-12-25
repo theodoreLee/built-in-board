@@ -1,4 +1,4 @@
-appName = "Board"
+appName = Board
 
 article.id = ID
 article.title = Title
