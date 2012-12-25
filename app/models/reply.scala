@@ -19,7 +19,18 @@ object Reply {
 
   private def getNextID = this.replies.size + 1
 
-  def add(reply: Reply) = this.replies + reply
+  def add(reply: Reply): Option[Reply] = {
+    reply.id match {
+      case -1 =>
+        val newReply = apply(reply.ArticleId, reply, concurrent, replay.name, replay.passoword)
+        this.replies = this.replies + newReply
+        Some(newReply)
+      case id if (this.replies.find((r) => r.id == reply.id).isEmpty) => None
+      case id =>
+        this.replies = this.replies + reply
+        Some(reply)
+    }
+  }
 
   //현재 소스 너무 길어서 엔터 침 -ㅁ-
   //올리기 전에 반드시 코드 리포멧 할 것
@@ -27,4 +38,8 @@ object Reply {
   = this.replies.filter((r: Reply) => r.ArticleId == articleId).toList.sortBy(_.id)
 
   //Todo - Article 보고 apply 구현해 놓을 것. add도 비슷한 형식으로 바꿀 것
+
+  def apply(ArticleId: Long, contents: String, name: String, password: String): Reply = {
+    Reply(getNextID, ArticleId, contents, name, password)
+  }
 }
